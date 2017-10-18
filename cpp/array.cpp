@@ -17,19 +17,48 @@ using namespace std;
 int main(int argc, char* argv[])
 {
 
-  if (argc%2 != 0)
+  int argnum = (argc-1);
+  
+  if (argnum % 2 != 0)
     {
       cout << "You did not enter an even number of variables. Try again.\n";
       return 0;
     }
   
   int size = argc;
-  int *argArray = new int[size];
+  int *argArray = new int[size-1];
 
-  /* for (int i=0; i <= size; i++) {
-    string var = argv[i];
-    cout << var;
-    } */
-  //This doesn't work. I fucking hate pointers. This is why I'm not a C++ girl.
+  for (int i=0; i < size; i++) {
+    cout << i << ": " << argv[i] << endl;
+  }
+    
+  for (int i=1; i < size; i++) {
+    int var = atoi(argv[i]);
+    argArray[i-1] = var;
+    }
+
+  int hV = argnum / 2;
+  
+  /*
+    cout << argnum << " " << half_Value << "\n";
+  */
+
+  cout << "argc:" << argc << endl;
+  cout << "argnum:" << argnum << endl;
+  cout << "size:" << size << endl;
+  cout << "hV:" << hV << endl;
+  cout << "...." << endl;
+
+  int *fArray = new int[hV];
+  int *sArray = new int[hV];
+  cout << "Memory addresses for fArray and sArray:\n=========================" << endl;
+  cout << "fArray: " << fArray << endl; //debug: you should see a memory address
+  cout << "sArray: " << sArray << endl; //debug: you should see a memory address.
+  cout << "=========================" << endl;
+
+  for (int i = 0; i < size; i++) {
+    cout << i << ": " <<  argArray[i] << endl;
+  }
+  
   return 0;
 }
