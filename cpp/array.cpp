@@ -16,13 +16,20 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
+
+  if (argc%2 != 0)
+    {
+      cout << "You did not enter an even number of variables. Try again.\n";
+      return 0;
+    }
+  
   int size = argc;
   int *argArray = new int[size];
 
-  for (int i=0; i <= size; i++) {
-    int var = atoi(argv[i]);
-    argArray[i] = var;
-    cout << argArray[i];
-  }
+  /* for (int i=0; i <= size; i++) {
+    string var = argv[i];
+    cout << var;
+    } */
+  //This doesn't work. I fucking hate pointers. This is why I'm not a C++ girl.
   return 0;
 }
