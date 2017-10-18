@@ -9,9 +9,20 @@
 */
 
 #include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+
 using namespace std;
 
 int main(int argc, char* argv[])
 {
-  cout << argv[1];
+  int size = argc;
+  int *argArray = new int[size];
+
+  for (int i=0; i <= size; i++) {
+    int var = atoi(argv[i]);
+    argArray[i] = var;
+    cout << argArray[i];
+  }
+  return 0;
 }
