@@ -1,0 +1,16 @@
+make: 'array' is up to date.
+=== Run 1 ===
+( 9 - 1) = 8
+( 9 - 5) = 4
+( 2 - 7) = -5
+=== Run 2 ===
+No difference between 2 and 2
+No difference between 4 and 4
+=== Run 3 ===
+( 5 - 8) = -3
+( 6 - 4) = 2
+( 7 - 10) = -3
+( 3 - 12) = -9
+( 2 - 14) = -12
+( 1 - 13) = -12
+( 9 - 100) = -91
