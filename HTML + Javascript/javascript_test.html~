@@ -10,7 +10,7 @@
 
 <script>
 function myFunction() {
-    document.getElementById("fuckboy").innerHTML = "taiwan no. 1!";
+    document.getElementById("fuckboy").innerHTML = "ALL GLORY TO COMRADE MAO!";
     document.getElementById("demo").innerHTML = "";
     document.getElementById("fuckboy").style.color = "rgb(255, 223, 55)";
     document.body.style.background = "rgb(200, 0, 0)";
