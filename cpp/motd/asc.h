@@ -1,5 +1,5 @@
 /*
-  ascii.h
+  asc.h
   'Generate an ASCII message in C++'
   (c) Robert Maloy
   October 31, 2017
@@ -12,23 +12,19 @@
 
 using namespace std;
 
-string getFileContents(ifstream&u File)
+int getFileContents(const string File)
 {
-  string Lines = "";
+  ifstream in(File);
 
-  if (File)
-  {
-    while (File.good())
-    {
-      string TempLine;
-      getline (File, TempLine);
-      TempLine += "\n";
-      Lines += TempLine;
-    }
-    return Lines;
+  if (!in) {
+    cout << "Cannot open the input file.\n";
+    return 1;
   }
-  else
-  {
-    return "File DNE.";
+
+  string str;
+
+  while (getline(in, str)) {
+    cout << str << endl;
   }
+return 0;  
 }
