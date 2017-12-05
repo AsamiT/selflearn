@@ -13,16 +13,32 @@ print_cmd() {
     echo "-v : verbose mode"
     echo "-d : debugging"
     echo "-l : logging enabled"
+    echo "-e : extension"
+    echo "-noLamp : create local HTML directories"
     exit 1;
 }
 
 main_function() {
-  echo "I can't get no... satisfaction..."
+  if [[ "${@#-noLamp}" = "$@" ]]
+  then {
+    mkdir 'public_html'
+    touch 'public_html/index.html'
+    echo "<html>Hello world!</html>" >> 'public_html/index.html'
+    }
+  else
+    null
+  fi
 }
 
 null() {
     echo "" >> /dev/null
 }
+
+if [[ "${@#-e}" = "$@" ]]
+then
+  null
+else
+  echo "Extensions are dumb."
 
 if [[ "${@#-d}" = "$@" ]]
 then
