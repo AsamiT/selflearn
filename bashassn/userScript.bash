@@ -6,9 +6,15 @@
 lampvar='0'
 logvar='0'
 ext=''
+dir=''
 verbosevar='0'
 DIRECTORY="public_html"
 LOG="userlog.log"
+
+if (( $# < 1 ))
+then
+    print_cmd
+fi
 
 if [ -d "$DIRECTORY" ]; then
   rm -r $DIRECTORY
@@ -17,6 +23,24 @@ fi
 if [ -f "$LOG" ]; then
   rm $LOG
 fi
+
+while getopts "vf:dle:noLamp" opt; do
+  case ${opt} in
+    v ) verbosevar=1
+    ;;
+    f ) dir=$OPTARG
+    ;;
+    d ) neofetch
+    ;;
+    l ) logvar=1
+    ;;
+    e ) ext=$OPTARG
+    ;;
+    noLamp ) lampvar=0
+    ;;
+  esac
+done
+shift $((OPTIND -1))
 
 print_cmd() {
     echo "Usage: $0"
@@ -58,39 +82,20 @@ main_func() {
   fi
 }
 
-if (( $# < 1 ))
-then
-    print_cmd
-fi
-
-if [[ "${@#-v}" = "$@" ]]
-then
-    null
-else
-    verbosevar=1
-fi
-
-if [[ "${@#-f}" = "$@" ]]
-then
-  null
-else
-  null
-fi
-
-if [[ "${@#-l}" = "$@" ]]
-then
-    null
-else {
-  logvar=1
-}
-fi
-
-if [[ "${@#-e $#}" = "$@" ]]
-then
-  null
-else
-  echo "Dicks."
-fi
+# if [[ "${@#-v}" = "$@" ]]
+# then
+#     null
+# else
+#     verbosevar=1
+# fi
+#
+# if [[ "${@#-l}" = "$@" ]]
+# then
+#     null
+# else {
+#   logvar=1
+# }
+# fi
 
 if [[ "${@#-noLamp}" = "$@" ]]
 then
@@ -105,12 +110,3 @@ then
 else
   main_func
 fi
-
-# if [[ "${@#-d}" = "$@" ]]
-# then
-#     null
-# else {
-#     set -x
-#     uname -a
-# }
-# fi
