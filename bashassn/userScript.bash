@@ -3,13 +3,24 @@
 #set -x
 # for debugging
 
-lampvar='0'
-logvar='0'
+lampvar=0
+logvar=0
 ext=''
 dir=''
-verbosevar='0'
+verbosevar=0
 DIRECTORY="public_html"
 LOG="userlog.log"
+
+print_cmd() {
+    echo "Usage: $0"
+    echo "-v | --verbose : verbose mode"
+    echo "-f | --file : directory "
+    echo "-d | --debug : debugging"
+    echo "-l | --log : logging enabled"
+    echo "-e | --ext : extension"
+    echo "-n | --noLamp : do not create local HTML directories"
+    exit 1;
+}
 
 if (( $# < 1 ))
 then
@@ -24,34 +35,23 @@ if [ -f "$LOG" ]; then
   rm $LOG
 fi
 
-while getopts "vf:dle:noLamp" opt; do
+while getopts "vf:dle:n" opt; do
   case ${opt} in
-    v ) verbosevar=1
+    -v )verbosevar=1
     ;;
-    f ) dir=$OPTARG
+    -f )dir=$OPTARG
     ;;
-    d ) neofetch
+    -d )neofetch
     ;;
-    l ) logvar=1
+    -l )logvar=1
     ;;
-    e ) ext=$OPTARG
+    -e )ext=$OPTARG
     ;;
-    noLamp ) lampvar=0
+    -n )lampvar=0
     ;;
   esac
 done
 shift $((OPTIND -1))
-
-print_cmd() {
-    echo "Usage: $0"
-    echo "-v : verbose mode"
-    echo "-f : directory "
-    echo "-d : debugging"
-    echo "-l : logging enabled"
-    echo "-e : extension"
-    echo "-noLamp : create local HTML directories"
-    exit 1;
-}
 
 create_HTML() {
   if (verbosevar=1)
