@@ -5,8 +5,8 @@
 
 lampvar=0
 logvar=0
-ext=''
-dir=''
+ext='.peop'
+dir='./pers'
 verbosevar=0
 DIRECTORY="public_html"
 LOG="userlog.log"
@@ -37,17 +37,17 @@ fi
 
 while getopts "vf:dle:n" opt; do
   case ${opt} in
-    -v )verbosevar=1
+    v )verbosevar=1
     ;;
-    -f )dir=$OPTARG
+    f )dir=$OPTARG
     ;;
-    -d )neofetch
+    d )neofetch
     ;;
-    -l )logvar=1
+    l )logvar=1
     ;;
-    -e )ext=$OPTARG
+    e )ext=$OPTARG
     ;;
-    -n )lampvar=0
+    n )lampvar=0
     ;;
   esac
 done
@@ -74,35 +74,15 @@ null() {
 }
 
 main_func() {
-  if [ $lampvar -eq 1 ]
-  then
-    create_HTML
-  else
-    echo "Skipping HTML creation..."
-  fi
+    echo "Extension:" $ext
+    echo "Directory:" $dir
+    if [ $lampvar -eq 1 ]
+    then
+	create_HTML
+    else
+	echo "Skipping HTML creation..."
+    fi
 }
-
-# if [[ "${@#-v}" = "$@" ]]
-# then
-#     null
-# else
-#     verbosevar=1
-# fi
-#
-# if [[ "${@#-l}" = "$@" ]]
-# then
-#     null
-# else {
-#   logvar=1
-# }
-# fi
-
-if [[ "${@#-noLamp}" = "$@" ]]
-then
-  lampvar=1
-else
-  null
-fi
 
 if [ $logvar -eq 1 ]
 then
