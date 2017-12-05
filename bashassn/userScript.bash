@@ -38,14 +38,16 @@ if [[ "${@#-e}" = "$@" ]]
 then
   null
 else
-  echo "Extensions are dumb."
+  echo "Dicks."
+fi
 
 if [[ "${@#-d}" = "$@" ]]
 then
     null
-else
+else {
     set -x
     uname -a
+}
 fi
 
 if [[ "${@#-v}" = "$@" ]]
