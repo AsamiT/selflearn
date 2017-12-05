@@ -13,16 +13,16 @@ main_function() {
   echo "I can't get no... satisfaction..."
 }
 
-if [ -l $TERM ]; then
+if [[ -l $TERM ]]; then
   main_function 2>&1 >> /var/log/userScript_log.log
 else
   main_function
 fi
 
-if [ -v $TERM ]; then
+if [[ -v $TERM ]]; then
   echo "Karma Chameleon."
 fi
 
-if [ -d $TERM ]; then
+if [[ -d $TERM ]]; then
     neofetch //simply execute neofetch.
 fi
