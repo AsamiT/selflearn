@@ -16,7 +16,7 @@ main_function() {
 }
 
 if [ -l $TERM ]; then
-  main_function 2>&1 >> /var/log/userScript_log.log
+  main_function >> /var/log/userScript_log.log
 else
   main_function
 fi
