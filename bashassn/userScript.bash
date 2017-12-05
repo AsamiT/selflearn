@@ -12,34 +12,42 @@ then
     exit 1;
 fi
 
-while test -n "$1"; do
-    case "$1" in
-       	--verbose|-v)
-	    verbose="true"
-	    shift
-	    ;;
-	--debug|-d)
-	    debug="true"
-	    shift
-	    ;;
-	*)
-	    echo "Usage: $0"
-	    echo "-v / --verbose: verbose mode"
-	    echo "-d / --debug: debug mode"
-	    exit 1
-	    ;;
-    esac
-done
+# while test -n "$1"; do
+#     case "$1" in
+#        	--verbose|-v)
+# 	    verbose="true"
+# 	    shift
+# 	    ;;
+# 	--debug|-d)
+# 	    debug="true"
+# 	    shift
+# 	    ;;
+# 	*)
+# 	    echo "Usage: $0"
+# 	    echo "-v / --verbose: verbose mode"
+# 	    echo "-d / --debug: debug mode"
+# 	    exit 1
+# 	    ;;
+#     esac
+# done
+
+if [ -l $TERM]; then
+  main_function 2>&1 >> /var/log/userScript_log.log
+else
+  main_function
+fi
 
 if [ "$verbose" == "true" ]; then
     declare echoLog='silentEcho'
     function silentEcho() {
 	:
-    }    
+    }
 fi
 
 if [ "$debug" == "true" ]; then
     neofetch //simply execute neofetch.
 fi
 
-     
+main_function() {
+  echo "Dongs."
+}
