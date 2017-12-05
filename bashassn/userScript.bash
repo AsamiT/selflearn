@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -x
+#set -x
+# for debugging
 
 if (( $# < 1 ))
 then
@@ -15,17 +16,18 @@ main_function() {
   echo "I can't get no... satisfaction..."
 }
 
-if [ -l $TERM ]; then
-  main_function >> /var/log/userScript_log.log
+if [ $1 = -l ]; then
+    rm -f "userlog.log"
+  main_function >> ./userlog.log
 else
   main_function
 fi
 
-if [ -v $TERM ]; then
+if [ $1 = -v ]; then
   main_function
   echo "Verbosity verbosity."
 fi
 
-if [ -d $TERM ]; then
+if [ $1 = -d ]; then
     neofetch //simply execute neofetch.
 fi
