@@ -5,29 +5,45 @@
 
 if (( $# < 1 ))
 then
+    print_cmd
+fi
+
+print_cmd() {
     echo "Usage: $0"
     echo "-v : verbose mode"
     echo "-d : debugging"
     echo "-l : logging enabled"
     exit 1;
-fi
+}
 
 main_function() {
   echo "I can't get no... satisfaction..."
 }
 
-if [ $1 = -l ]; then
-    rm -f "userlog.log"
-  main_function >> ./userlog.log
+null() {
+    echo "" >> /dev/null
+}
+
+if [[ "${@#-d}" = "$@" ]]
+then
+    null
 else
-  main_function
+    set -x
+    uname -a
 fi
 
-if [ $1 = -v ]; then
-  main_function
-  echo "Verbosity verbosity."
+if [[ "${@#-v}" = "$@" ]]
+then
+    null
+else
+    echo "Found verbose!"
 fi
 
-if [ $1 = -d ]; then
-    neofetch //simply execute neofetch.
+if [[ "${@#-l}" = "$@" ]]
+then
+    null
+else {
+    rm -f "userlog.log"
+    main_function >> ./userlog.log
+}
 fi
