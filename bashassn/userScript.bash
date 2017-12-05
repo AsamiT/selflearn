@@ -1,35 +1,11 @@
-
-
-RET=0
-verbose="false"
-debug="false"
-
 if (( $# < 1 ))
 then
     echo "Usage: $0"
-    echo "-v / --verbose: verbose mode"
-    echo "-d / --debug: debug mode"
+    echo "-v : verbose mode"
+    echo "-d : debugging"
+    echo "-l : logging enabled"
     exit 1;
 fi
-
-# while test -n "$1"; do
-#     case "$1" in
-#        	--verbose|-v)
-# 	    verbose="true"
-# 	    shift
-# 	    ;;
-# 	--debug|-d)
-# 	    debug="true"
-# 	    shift
-# 	    ;;
-# 	*)
-# 	    echo "Usage: $0"
-# 	    echo "-v / --verbose: verbose mode"
-# 	    echo "-d / --debug: debug mode"
-# 	    exit 1
-# 	    ;;
-#     esac
-# done
 
 if [ -l $TERM]; then
   main_function 2>&1 >> /var/log/userScript_log.log
@@ -37,14 +13,11 @@ else
   main_function
 fi
 
-if [ "$verbose" == "true" ]; then
-    declare echoLog='silentEcho'
-    function silentEcho() {
-	:
-    }
+if [ -v $TERM ]; then
+  echo "Karma Chameleon."
 fi
 
-if [ "$debug" == "true" ]; then
+if [ -d $TERM ]; then
     neofetch //simply execute neofetch.
 fi
 
