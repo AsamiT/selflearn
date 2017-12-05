@@ -7,6 +7,10 @@ then
     exit 1;
 fi
 
+main_function() {
+  echo "I can't get no... satisfaction..."
+}
+
 if [ -l $TERM]; then
   main_function 2>&1 >> /var/log/userScript_log.log
 else
@@ -20,7 +24,3 @@ fi
 if [ -d $TERM ]; then
     neofetch //simply execute neofetch.
 fi
-
-main_function() {
-  echo "Dongs."
-}
