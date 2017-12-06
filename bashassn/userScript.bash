@@ -3,11 +3,12 @@
 #set -x
 # for debugging
 
-lampvar=0
+lampvar=1
 logvar=0
 ext='.peop'
 dir='./pers'
 verbosevar=0
+files=0
 DIRECTORY="public_html"
 LOG="userlog.log"
 
@@ -60,12 +61,12 @@ create_HTML() {
   fi
   mkdir 'public_html'
   touch 'public_html/index.html'
+  echo "<html>Hello world!</html>" >> 'public_html/index.html'
   if (verbosevar=1)
   then
     echo "Printing HTML file:"
+    cat 'public_html/index.html' #print contents to log/display
   fi
-  echo "<html>Hello world!</html>" >> 'public_html/index.html'
-  cat 'public_html/index.html' #print contents to log/display
 }
 
 
@@ -73,9 +74,19 @@ null() {
     echo "" >> /dev/null
 }
 
+grabNumFiles() {
+  files=$(ls -1 $dir | wc -l)
+}
+
 main_func() {
-    echo "Extension:" $ext
-    echo "Directory:" $dir
+    grabNumFiles
+    if [ $verbosevar -eq 1 ]
+    then
+      echo "Number of files:" $files
+      echo "Extension:" $ext
+      echo "Directory:" $dir
+    fi
+
     if [ $lampvar -eq 1 ]
     then
 	create_HTML
