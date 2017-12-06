@@ -3,21 +3,22 @@
 #set -x
 # for debugging
 
+a=1
 lampvar=1
 logvar=0
 ext='.peop'
-dir='./pers'
+dir='pers'
 verbosevar=0
 files=0
 USR='james'
 DIRECTORY="/home/$USR/"
 LOG="userlog.log"
+Name=''
 
 print_cmd() {
     echo "Usage: $0"
     echo "-v | --verbose : verbose mode"
     echo "-f | --file : directory "
-    echo "-d | --debug : debugging"
     echo "-l | --log : logging enabled"
     echo "-e | --ext : extension"
     echo "-n | --noLamp : do not create local HTML directories"
@@ -29,9 +30,10 @@ then
     print_cmd
 fi
 
-#if [ -d "$DIRECTORY" ]; then
-#  rm -r $DIRECTORY
-#fi
+if [ -d $DIRECTORY'public_html' ]; then
+    cd $DIRECTORY
+    rm -rf 'public_html'
+fi
 
 if [ -f "files" ]; then
   rm "files"
@@ -47,7 +49,7 @@ while getopts "vf:dle:n" opt; do
     ;;
     f )dir=$OPTARG
     ;;
-    d )neofetch
+    d )set -x
     ;;
     l )logvar=1
     ;;
@@ -64,13 +66,13 @@ create_HTML() {
   then
     echo "Creating public HTML folder..."
   fi
-  mkdir '$DIRECTORY/public_html'
-  touch '$DIRECTORY/public_html/index.html'
-  echo "<html><b>Hello world!</b></html>" >> 'public_html/index.html'
+  mkdir $DIRECTORY'public_html'
+  touch $DIRECTORY'public_html/index.html'
+  echo "<html><b>Hello world!</b></html>" >> $DIRECTORY'public_html/index.html'
   if (verbosevar=1)
   then
     echo "Printing HTML file:"
-    cat '$DIRECTORY/public_html/index.html' #print contents to log/display
+    cat $DIRECTORY'public_html/index.html' #print contents to log/display
   fi
 }
 
@@ -92,7 +94,21 @@ main_func() {
       echo "Directory:" $dir
       echo "DIRECTORY:" $DIRECTORY
     fi
-
+    cd $dir
+    while [ "$a" -lt "$files" ]; do
+	for i in $(cat app$a$ext); do
+	    echo $i
+	    if ($i=0)
+	    then
+		Name+=$i
+	    else
+		Name+=","$si
+	    fi
+	done
+	sudo adduser --quiet --gecos $Name --force-badname
+	a=$[$a+1]
+	wait	
+    done
     if [ $lampvar -eq 1 ]
     then
 	create_HTML
