@@ -75,7 +75,7 @@ null() {
 }
 
 grabNumFiles() {
-  files=$(ls -1 $dir | wc -l)
+  files=ls -1 $dir | wc -l
 }
 
 main_func() {
