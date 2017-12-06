@@ -10,10 +10,10 @@ do
 	exec < $1"/"$i
 	read Name
 	echo "Removing "$Name
-	deluser $Name
+	sudo deluser $Name
 	if [ $Name != "" ]; then
-	rm -R "/home/"$Name
-	rm -R "/var/www/html/"$Name"_www"
+	sudo rm -R "/home/"$Name
+	sudo rm -R "/var/www/html/"$Name"_www"
 	fi
 done
 
