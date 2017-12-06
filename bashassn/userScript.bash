@@ -32,6 +32,10 @@ if [ -d "$DIRECTORY" ]; then
   rm -r $DIRECTORY
 fi
 
+if [ -f "files"]; then
+  rm "files"
+fi
+
 if [ -f "$LOG" ]; then
   rm $LOG
 fi
@@ -75,7 +79,7 @@ null() {
 }
 
 grabNumFiles() {
-  files=ls -1 $dir | wc -l
+  files=$(ls -1 $dir | wc -l)
 }
 
 main_func() {
