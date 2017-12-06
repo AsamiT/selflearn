@@ -65,7 +65,7 @@ done
 shift $((OPTIND -1))
 
 create_HTML() {
-  if (verbosevar=1)
+  if [ $verbosevar -eq 1 ]
   then
     echo "Creating public HTML folder..."
   fi
@@ -77,8 +77,9 @@ create_HTML() {
   su -c "echo 'Hello World!' >> $DIRECTORY$USR'/public_html/index.html'" -s /bin/bash $USR
   if (verbosevar=1)
   then
-    echo "Printing HTML file:"
-    sudo cat $DIRECTORY$USR'/public_html/index.html' #print contents to log/display
+      echo "Printing HTML file:"
+      sudo cat $DIRECTORY$USR'/public_html/index.html' #print contents to log/display
+      echo "--------------------"
   fi
 }
 
@@ -133,16 +134,23 @@ main_func() {
 	    y=$[$y+1]
 	    
 	done
-	echo $userName","$fullName
+	if [ $verbosevar -eq 1 ]
+	then    
+	    echo $userName", "$fullName
+	fi
 	#echo $Name
 	#sudo adduser --quiet --force-badname $Name
-	sudo adduser --quiet --force-badname --gecos '$fullName' $userName
+	sudo adduser --quiet --disabled-password --force-badname --gecos '$fullName' $userName
 	USR=$userName
+	echo "$USR:$USR" | sudo chpasswd
 	if [ $lampvar -eq 1 ]
 	then
 	    create_HTML
 	else
-	    echo "Skipping HTML creation..."
+	    if [ $verbosevar -eq 1 ]
+	    then
+		echo "Skipping HTML creation..."
+	    fi
 	fi
 	a=$[$a+1]
 	y=0
