@@ -9,7 +9,8 @@ ext='.peop'
 dir='./pers'
 verbosevar=0
 files=0
-DIRECTORY="public_html"
+USR='james'
+DIRECTORY="/home/$USR/"
 LOG="userlog.log"
 
 print_cmd() {
@@ -28,11 +29,11 @@ then
     print_cmd
 fi
 
-if [ -d "$DIRECTORY" ]; then
-  rm -r $DIRECTORY
-fi
+#if [ -d "$DIRECTORY" ]; then
+#  rm -r $DIRECTORY
+#fi
 
-if [ -f "files"]; then
+if [ -f "files" ]; then
   rm "files"
 fi
 
@@ -63,13 +64,13 @@ create_HTML() {
   then
     echo "Creating public HTML folder..."
   fi
-  mkdir 'public_html'
-  touch 'public_html/index.html'
-  echo "<html>Hello world!</html>" >> 'public_html/index.html'
+  mkdir '$DIRECTORY/public_html'
+  touch '$DIRECTORY/public_html/index.html'
+  echo "<html><b>Hello world!</b></html>" >> 'public_html/index.html'
   if (verbosevar=1)
   then
     echo "Printing HTML file:"
-    cat 'public_html/index.html' #print contents to log/display
+    cat '$DIRECTORY/public_html/index.html' #print contents to log/display
   fi
 }
 
@@ -89,6 +90,7 @@ main_func() {
       echo "Number of files:" $files
       echo "Extension:" $ext
       echo "Directory:" $dir
+      echo "DIRECTORY:" $DIRECTORY
     fi
 
     if [ $lampvar -eq 1 ]
