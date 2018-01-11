@@ -23,13 +23,8 @@ int main()
   strcpy(str, "0123456789");
   printf("String = %s, Address = %u\n", str, str);
 
-  /* reallocation */
-  str = (char *) realloc(str, 2048);
-  strcat(str, " and now we start over.");
-  printf("String = %s, Address = %u\n", str, str);
-
   free(str);
   
   return 0;
-
 }
+
