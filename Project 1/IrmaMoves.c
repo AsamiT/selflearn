@@ -18,7 +18,10 @@
 int a=8, b=8;
 
 char **createMapBoard(void) {
-    char *board = (char *)malloc(a * b * sizeof(char));
+//    char *board = (char *)malloc(a * b * sizeof(char));
+    char **board;
+    board = (char **)malloc(sizeof(char *) * a);
+    board[0] = (char *)malloc(sizeof(char) * a * b);
     if (board == NULL) { //hey maybe check to see if this works
         printf("malloc failed!\n");
         exit(1);
@@ -31,12 +34,14 @@ char **createMapBoard(void) {
      Therefore, it has been substituted with something else.
      */
     
-    strncpy(board, "F", 8);
+    strncpy(*board, "F", 8);
     for (int i=0; i < a; i++) {
         for (int c=0; c < b; c++) {
-            printf("%s ", board);
+            printf("%s ", *board);
         }
     }
+    
+    //strncpy(board[0][2], "C", 8);
     
     /*
      printf("*board memory location: %d\n", *board);
@@ -45,7 +50,7 @@ char **createMapBoard(void) {
      to see where *board lays in memory.
      */
     
-    return &board;
+    return board;
 }
 
 void printMapBoard(char **board) {
