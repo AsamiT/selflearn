@@ -17,12 +17,17 @@
 
 int a=8, b=8;
 
+void block() {
+    printf("= = = = = = = =\n");
+}
+
 char **createMapBoard(void) {
-//    char *board = (char *)malloc(a * b * sizeof(char));
-    char **board;
-    board = (char **)malloc(sizeof(char *) * a);
-    board[0] = (char *)malloc(sizeof(char) * a * b);
-    if (board == NULL) { //hey maybe check to see if this works
+    char *board[a];
+    for (int i=0; i < a; i++) {
+        board[i] = (char *)malloc(b * sizeof(char));
+    }
+    
+    if (*board == NULL) { //hey maybe check to see if this works
         printf("malloc failed!\n");
         exit(1);
     }
@@ -34,30 +39,27 @@ char **createMapBoard(void) {
      Therefore, it has been substituted with something else.
      */
     
-    strncpy(*board, "F", 8);
+    /* Generally, we have an idea on how to create an empty board, but not as to how
+     to arbitrarily assign values for each of the land masses. */
+    
     for (int i=0; i < a; i++) {
-        for (int c=0; c < b; c++) {
-            printf("%s ", *board);
+        for (int k=0; k < b; k++) {
+            strncpy(&board[i][k], "0 ", 8);
         }
     }
-    
-    //strncpy(board[0][2], "C", 8);
-    
-    /*
-     printf("*board memory location: %d\n", *board);
-     This is a line of code that
-     exists as a debug checker
-     to see where *board lays in memory.
-     */
     
     return board;
 }
 
 void printMapBoard(char **board) {
-        printf("========\n");
-        for (int i=0; i < a; i++) {
-            for (int k=0; k < b; k++) {
-                printf("%c", board[i][k]);
+    block();
+    for (int i=0; i < a; i++) {
+        for (int k=0; k < b; k++) {
+            printf("%c ", board[i][k]);
+            if (k==7) {
+                printf("\n");
             }
         }
     }
+    block();
+}
