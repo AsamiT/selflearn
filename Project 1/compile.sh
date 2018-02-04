@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gcc IrmaMoves.c testcase01.c
+gcc -std=c99 IrmaMoves.c testcase01.c
