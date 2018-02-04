@@ -7,9 +7,7 @@
 
   */
 
-/* "C makes it easy to shoot yourself in the foot;
-    C++ makes it harder, but when you do it blows your whole leg off."
-     - Bjarne Stroustrup, 2007 */
+/* "In order to create a program in C, first you must reinvent the universe." */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -22,9 +20,9 @@ void block() {
 }
 
 char **createMapBoard(void) {
-    char *board[a];
+    char** board[a];
     for (int i=0; i < a; i++) {
-        board[i] = (char *)malloc(b * sizeof(char));
+        board[i] = (char **)malloc(b * sizeof(char));
     }
     
     if (*board == NULL) { //hey maybe check to see if this works
@@ -39,12 +37,9 @@ char **createMapBoard(void) {
      Therefore, it has been substituted with something else.
      */
     
-    /* Generally, we have an idea on how to create an empty board, but not as to how
-     to arbitrarily assign values for each of the land masses. */
-    
     for (int i=0; i < a; i++) {
         for (int k=0; k < b; k++) {
-            strncpy(&board[i][k], "0 ", 8);
+            strncpy(board[i][k], "F ", 8); //copy "F" into every space of the board.
         }
     }
     
