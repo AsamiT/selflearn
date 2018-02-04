@@ -18,18 +18,25 @@
 int a=8, b=8;
 
 char **createMapBoard(void) {
-    char *board = (char *)malloc(sizeof(char)*a*b);
+    char *board = (char *)malloc(a * b * sizeof(char));
     if (board == NULL) { //hey maybe check to see if this works
         printf("malloc failed!\n");
         exit(1);
     }
-    strncpy(&board[0], "0", 8);
+    
     
     /* The original line of code requested by the professor was
      strncpy(&board[0], "FF", 8);
      This code runs amok with memory management, and triggers a segfault.
      Therefore, it has been substituted with something else.
      */
+    
+    strncpy(board, "F", 8);
+    for (int i=0; i < a; i++) {
+        for (int c=0; c < b; c++) {
+            printf("%s ", board);
+        }
+    }
     
     /*
      printf("*board memory location: %d\n", *board);
