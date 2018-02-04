@@ -6,6 +6,11 @@
 
   */
 
+/* If I had to choose between
+ spending the remaining days of my life
+ programming in Intel 8086/88 assembly,
+ or C; I'd probably take the former. */
+
   int a=8, b=8;
 
 char **createMapBoard(void) {
