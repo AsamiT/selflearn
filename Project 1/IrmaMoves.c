@@ -22,8 +22,13 @@ void block() {
 }
 
 char **createMapBoard(void) {
-    char **board = (char **)calloc(ARRAY_DIM * ARRAY_DIM, sizeof(char));
-    if (board == NULL) { //hey maybe check to see if this works
+    //char **board = (char **)calloc(ARRAY_DIM * ARRAY_DIM, sizeof(char));
+    char **board[ARRAY_DIM];
+    for (int i=0; i < ARRAY_DIM; i++) {
+        board[i] = (char **)malloc(ARRAY_DIM * sizeof(char));
+    }
+    
+    if (*board == NULL) { //hey maybe check to see if this works
         printf("malloc failed!\n");
         exit(1);
     }
@@ -32,9 +37,11 @@ char **createMapBoard(void) {
      This code runs amok with memory management, and triggers a segfault.
      Therefore, it has been substituted with something else.
      */
+    
+    int d = ARRAY_DIM;
     for (int i=0; i < ARRAY_DIM; i++) {
         for (int k=0; k < ARRAY_DIM; k++) {
-            strncpy(&board[i][k], " ", 8); //copy "F" into every space of the board.
+            strncpy(board[i][k], " ", 8); //copy "F" into every space of the board.
         }
     }
     
