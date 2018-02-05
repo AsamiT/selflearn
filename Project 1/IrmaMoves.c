@@ -41,7 +41,6 @@ char **createMapBoard(void) {
         }
     }
     
-    printf("Memory allocated for board: %zu\n", malloc_size(*board));
     for (int i=0; i<COL; i++) {
         for (int z=0; z<ROW; z++) {
             strcpy(&board[i][z], "Test");
@@ -97,7 +96,7 @@ void printMapBoard(char **board) {
     block();
     for (int c=0; c < ROW; c++) {
         for (int d=0; d<COL; d++) {
-            printf("%s ", &board[c][d]);
+            printf("%c ", board[c][d]);
             if(d==7) {
                 printf("\n");
             }
