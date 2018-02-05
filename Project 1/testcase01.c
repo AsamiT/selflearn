@@ -23,7 +23,7 @@ int main(void)
 //        failwhale();
 //    if (board[2][0] != ' ')
 //        failwhale();
-
+    
 	printMapBoard(board);
 
 	printf("Hooray!\n");

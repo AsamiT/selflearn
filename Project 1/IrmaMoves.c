@@ -7,22 +7,25 @@
 
   */
 
-/* "In order to create a program in C, first you must reinvent the universe." */
+/* Only a company as insidious and evil
+ as AT&T would come up with a programming
+ language as evil and horrible as C. */
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-int a=8, b=8;
+#define ARRAY_DIM 8
 
 void block() {
     printf("= = = = = = = =\n");
 }
 
 char **createMapBoard(void) {
-    char** board[a];
-    for (int i=0; i < a; i++) {
-        board[i] = (char **)malloc(b * sizeof(char));
+    char **board[ARRAY_DIM];
+    **board = malloc(ARRAY_DIM * sizeof(char));
+    for (int i=0; i < ARRAY_DIM; i++) {
+        board[i] = malloc(ARRAY_DIM * sizeof(char));
     }
     
     if (*board == NULL) { //hey maybe check to see if this works
@@ -36,10 +39,9 @@ char **createMapBoard(void) {
      This code runs amok with memory management, and triggers a segfault.
      Therefore, it has been substituted with something else.
      */
-    
-    for (int i=0; i < a; i++) {
-        for (int k=0; k < b; k++) {
-            strncpy(board[i][k], "F ", 8); //copy "F" into every space of the board.
+    for (int i=0; i < ARRAY_DIM; i++) {
+        for (int k=0; k < ARRAY_DIM; k++) {
+            strncpy(&board[i][k], "0 ", 8); //copy "F" into every space of the board.
         }
     }
     
@@ -48,9 +50,10 @@ char **createMapBoard(void) {
 
 void printMapBoard(char **board) {
     block();
-    for (int i=0; i < a; i++) {
-        for (int k=0; k < b; k++) {
-            printf("%c ", board[i][k]);
+    for (int i=0; i < ARRAY_DIM; i++) {
+        for (int k=0; k < ARRAY_DIM; k++) {
+            //debug: printf("Iteration: i=%d, k=%d:\n", i, k);
+            printf("%c ", &board[i][k]);
             if (k==7) {
                 printf("\n");
             }
