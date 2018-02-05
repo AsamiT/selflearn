@@ -22,18 +22,11 @@ void block() {
 }
 
 char **createMapBoard(void) {
-    char **board[ARRAY_DIM];
-    **board = malloc(ARRAY_DIM * sizeof(char));
-    for (int i=0; i < ARRAY_DIM; i++) {
-        board[i] = malloc(ARRAY_DIM * sizeof(char));
-    }
-    
-    if (*board == NULL) { //hey maybe check to see if this works
+    char **board = (char **)calloc(ARRAY_DIM * ARRAY_DIM, sizeof(char));
+    if (board == NULL) { //hey maybe check to see if this works
         printf("malloc failed!\n");
         exit(1);
     }
-    
-    
     /* The original line of code requested by the professor was
      strncpy(&board[0], "FF", 8);
      This code runs amok with memory management, and triggers a segfault.
@@ -41,7 +34,7 @@ char **createMapBoard(void) {
      */
     for (int i=0; i < ARRAY_DIM; i++) {
         for (int k=0; k < ARRAY_DIM; k++) {
-            strncpy(&board[i][k], "0 ", 8); //copy "F" into every space of the board.
+            strncpy(&board[i][k], " ", 8); //copy "F" into every space of the board.
         }
     }
     
@@ -52,8 +45,7 @@ void printMapBoard(char **board) {
     block();
     for (int i=0; i < ARRAY_DIM; i++) {
         for (int k=0; k < ARRAY_DIM; k++) {
-            //debug: printf("Iteration: i=%d, k=%d:\n", i, k);
-            printf("%c ", &board[i][k]);
+            printf("%s ", &board[i][k]);
             if (k==7) {
                 printf("\n");
             }
