@@ -79,18 +79,20 @@ char **createMapBoard(void) {
     
 }
 
-char **destroyMapBoard(char **board) {
-    printf("memory allocated for board: %zu", malloc_size(board));
-    free(board);
-    printf("memory allocated for board: %zu", malloc_size(board));
-    return NULL;
-}
+//char **destroyMapBoard(char **board) {
+//    printf("memory allocated for board: %zu", malloc_size(board));
+//    free(board);
+//    printf("memory allocated for board: %zu", malloc_size(board));
+//    return NULL;
+//}
 
 void printMapBoard(char **board) {
     block();
     for (int c=0; c < ROW; c++) {
         for (int d=0; d<COL; d++) {
-//            printf("coord=%d,%d - val:%c\n", c, d, board[c][d]);
+            /* debug function intended to show us the coordinates of each item on the board
+                 printf("coord=%d,%d - val:%c\n", c, d, board[c][d]);
+             */
             printf("%c ", board[c][d]);
             if(d==7) {
                 printf("\n");
