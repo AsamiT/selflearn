@@ -38,21 +38,20 @@ char **createMapBoard(void) {
      Therefore, it has been substituted with something else.
      */
     
-    int d = ARRAY_DIM;
     for (int i=0; i < ARRAY_DIM; i++) {
         for (int k=0; k < ARRAY_DIM; k++) {
-            strncpy(board[i][k], " ", 8); //copy "F" into every space of the board.
+            strncpy(board[0], "0", 8); //copy "F" into every space of the board.
         }
     }
     
-    return board;
+    return *board;
 }
 
 void printMapBoard(char **board) {
     block();
     for (int i=0; i < ARRAY_DIM; i++) {
         for (int k=0; k < ARRAY_DIM; k++) {
-            printf("%s ", &board[i][k]);
+            printf("%s ", &board[i*k]);
             if (k==7) {
                 printf("\n");
             }
