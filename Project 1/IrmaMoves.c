@@ -14,45 +14,42 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-#define ARRAY_DIM 8
+#define ROW 8
+#define COL 8
 
 void block() {
     printf("= = = = = = = =\n");
 }
 
 char **createMapBoard(void) {
-    //char **board = (char **)calloc(ARRAY_DIM * ARRAY_DIM, sizeof(char));
-    char **board[ARRAY_DIM];
-    for (int i=0; i < ARRAY_DIM; i++) {
-        board[i] = (char **)malloc(ARRAY_DIM * sizeof(char));
+    
+    static char *board[ROW];
+    for (int i=0; i<ROW; i++) {
+        board[i] = (char *)malloc(COL * sizeof(char));
     }
     
-    if (*board == NULL) { //hey maybe check to see if this works
+    if (*board == NULL)
+    {
         printf("malloc failed!\n");
         exit(1);
     }
-    /* The original line of code requested by the professor was
-     strncpy(&board[0], "FF", 8);
-     This code runs amok with memory management, and triggers a segfault.
-     Therefore, it has been substituted with something else.
-     */
     
-    for (int i=0; i < ARRAY_DIM; i++) {
-        for (int k=0; k < ARRAY_DIM; k++) {
-            strncpy(board[0], "0", 8); //copy "F" into every space of the board.
+    for (int a=0; a<ROW; a++) {
+        for (int b=0; b<COL; b++) {
+            strncpy(&board[a][b], "F", 8);
         }
     }
     
-    return *board;
+    return board;
+    
 }
 
 void printMapBoard(char **board) {
     block();
-    for (int i=0; i < ARRAY_DIM; i++) {
-        for (int k=0; k < ARRAY_DIM; k++) {
-            printf("%s ", &board[i*k]);
-            if (k==7) {
+    for (int c=0; c < ROW; c++) {
+        for (int d=0; d<COL; d++) {
+            printf("%c ", board[c][d]);
+            if(d==7) {
                 printf("\n");
             }
         }
