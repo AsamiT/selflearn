@@ -1,9 +1,9 @@
 Undefined symbols for architecture x86_64:
   "_parseNotationString", referenced from:
-      _main in testcase03-27b9cc.o
+      _main in testcase03-74e0dc.o
 ld: symbol(s) not found for architecture x86_64
 clang: error: linker command failed with exit code 1 (use -v to see invocation)
  
 ===========
-Compilation took place on Mon Feb  5 11:26:25 EST 2018
+Compilation took place on Tue Feb  6 12:05:47 EST 2018
 ===========

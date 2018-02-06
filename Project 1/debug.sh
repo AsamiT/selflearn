@@ -1,3 +1,7 @@
 #!/bin/bash
 
-lldb a.out
+
+for FILE in "$@"
+do
+    lldb "$FILE"
+done
