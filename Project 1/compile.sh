@@ -11,9 +11,6 @@ for VAL in "$@"
 do
     echo "Compiling testcase $VAL..."
     echo "Compile time: " >> logfile
-    gcc -o "$FILE" IrmaMoves.c testcases/testcase0"$VAL".c &> logfile
-    echo " " >> logfile
-    echo "===========" >> logfile
-    echo "Compilation took place on $DATE" >> logfile
-    echo "===========" >> logfile
+    gcc -o "$FILE" IrmaMoves.c testcases/testcase0"$VAL".c
 done
+

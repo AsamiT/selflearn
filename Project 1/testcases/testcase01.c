@@ -25,7 +25,7 @@ int main(void)
 		failwhale();
 
 	printMapBoard(board);
-
+	destroyMapBoard(board);
 	printf("Hooray!\n");
 
 	return 0;
